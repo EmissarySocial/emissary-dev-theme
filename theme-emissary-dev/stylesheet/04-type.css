@@ -1,0 +1,40 @@
+/******************************************
+ * Type
+ *
+ * Hack everywhere.  Sizes and line heights stay
+ * on theme-global's rhythm scale (see AGENTS.md).
+ ******************************************/
+
+html {
+	font-family: var(--mono);
+}
+
+body {
+	font-family: var(--mono);
+}
+
+/* Form controls do not inherit the page font by default */
+input,
+textarea,
+select,
+button {
+	font-family: inherit;
+}
+
+::selection {
+	background: var(--magenta-dim);
+	color: #ffffff;
+}
+
+a {
+	color: var(--link-color);
+}
+
+a:hover {
+	color: var(--link-color-hover);
+}
+
+:focus-visible {
+	outline: 1px solid var(--focus-color);
+	outline-offset: 2px;
+}

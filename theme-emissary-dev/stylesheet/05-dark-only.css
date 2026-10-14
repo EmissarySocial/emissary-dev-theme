@@ -1,0 +1,30 @@
+/******************************************
+ * Dark-Only Rules
+ *
+ * theme-global rules that apply only when the browser
+ * asks for dark mode, restated so they always apply.
+ ******************************************/
+
+/* From theme-global 02-forms.css */
+.checkbutton:has(input[type="checkbox"]:checked),
+.radiobutton:has(input[type="radio"]:checked) {
+	border-color: var(--blue70);
+	color: var(--blue70);
+	background-color: var(--blue10);
+}
+
+.toggle-container[value="true"] .toggle {
+	background-color: var(--blue70);
+	border-color: var(--blue70);
+}
+
+/* From theme-global 03-widgets-modal.css */
+#modal.ready #modal-underlay {
+	background-color: color-mix(in srgb, var(--gray10) 70%, transparent);
+}
+
+#modal-content {
+	background-color: var(--gray20);
+	border-color: var(--gray30);
+	color: var(--gray100);
+}

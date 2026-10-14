@@ -1,0 +1,38 @@
+/******************************************
+ * Fonts
+ *
+ * Hack is served by the fontpack theme, which only
+ * ships the files, so the faces are declared here.
+ ******************************************/
+
+@font-face {
+	font-family: "Hack";
+	src: url("/.themes/fontpack/resources/Hack/Hack-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Hack";
+	src: url("/.themes/fontpack/resources/Hack/Hack-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Hack";
+	src: url("/.themes/fontpack/resources/Hack/Hack-Italic.woff2") format("woff2");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Hack";
+	src: url("/.themes/fontpack/resources/Hack/Hack-BoldItalic.woff2") format("woff2");
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
