@@ -16,13 +16,18 @@
 	background-color: transparent;
 }
 
+/* The document panel's side padding, shared with spacing that should match it */
+:root {
+	--panel-padding: calc(var(--rhythm) * 5);
+}
+
 /* The document panel: the width wrapper inside the content column */
 .content-main > [class^="layout-"] {
 	position: relative;
 	background-color: var(--bg2);
 	border: 1px solid var(--line);
 	border-radius: 0px 8px 8px 8px;
-	padding: calc(var(--rhythm) * 4) calc(var(--rhythm) * 5) calc(var(--rhythm) * 6);
+	padding: calc(var(--rhythm) * 4) var(--panel-padding) calc(var(--rhythm) * 6);
 }
 
 /******************************************
@@ -31,14 +36,28 @@
 
 @media screen and (min-width: 768px) {
 
+	/* A short page still reaches the bottom of the window: <main> already fills it, so the
+	   page, the article, the content column, and the panel each stretch to their parent */
+	.page:has(> article.content > .content-main) {
+		display: flex;
+		flex-direction: column;
+	}
+
 	.page > article.content {
+		flex-grow: 1;
 		align-items: stretch;
 		margin-bottom: 0px !important;
 	}
 
 	.page > article.content > .content-main {
+		display: flex;
+		flex-direction: column;
 		min-width: 0px;
 		padding: calc(var(--rhythm) * 2) calc(var(--rhythm) * 3.5) calc(var(--rhythm) * 8);
+	}
+
+	.page > article.content > .content-main > [class^="layout-"] {
+		flex-grow: 1;
 	}
 
 	/* Explorer rail: overrides the column viewer.css draws, which loads after this file */
@@ -75,6 +94,10 @@
 
 @media screen and (max-width: 767px) {
 
+	:root {
+		--panel-padding: calc(var(--rhythm) * 2);
+	}
+
 	.page > article.content > .widgets.LEFT {
 		padding: calc(var(--rhythm) * 2);
 		background-color: var(--bg1);
@@ -82,7 +105,7 @@
 	}
 
 	.content-main > [class^="layout-"] {
-		padding: calc(var(--rhythm) * 2);
+		padding: var(--panel-padding);
 		border-radius: 0px;
 		border-left: none;
 		border-right: none;
@@ -94,12 +117,55 @@
 }
 
 /******************************************
+ * Markdown heading marks: a magenta "#", "##", or
+ * "###" before article headings, as in the mockup.
+ * Only the title block and the article body, so
+ * headings inside widgets stay plain
+ ******************************************/
+
+.content-main > [class^="layout-"] > h1::before,
+.content-main .e-content h1::before {
+	content: "#";
+	margin-right: calc(var(--rhythm) * 1.5);
+}
+
+.content-main > [class^="layout-"] > h2::before,
+.content-main .e-content h2::before {
+	content: "##";
+	margin-right: var(--rhythm);
+}
+
+.content-main > [class^="layout-"] > h3::before,
+.content-main .e-content h3::before {
+	content: "###";
+	margin-right: var(--rhythm);
+}
+
+.content-main > [class^="layout-"] > :is(h1, h2, h3)::before,
+.content-main .e-content :is(h1, h2, h3)::before {
+	font-weight: var(--weight);
+	color: var(--magenta);
+}
+
+/******************************************
  * Explorer: widget-navigation-list as a file tree
  *
  * Sized from the mockup, not the rhythm scale (D16):
  * 13px entries, an 11px label, and a twist that hangs
  * in its own column so labels line up across a level.
  ******************************************/
+
+/* The mockup's "Explorer" label, drawn on the rail's first widget so it scrolls and sticks with it */
+.page > article.content > .widgets.LEFT > :first-child::before {
+	content: "Explorer";
+	display: block;
+	padding: 0px 8px 8px;
+	font-size: 11px;
+	line-height: 1.7;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--faint);
+}
 
 .widgets.LEFT .widget-navigation {
 	font-size: 13px;
@@ -219,10 +285,10 @@
 	text-decoration: none;
 }
 
-/* The open file: panel-colored, with a magenta top edge and label */
+/* The open file: panel-colored, with a magenta top edge and a white label */
 .widget-sibling-tabs [role="tablist"] > [role="tab"][aria-selected="true"],
 .widget-sibling-tabs [role="tablist"] > [role="tab"][aria-selected="true"]:hover {
-	color: var(--magenta-hi);
+	color: var(--gray100);
 	background-color: var(--bg2);
 	border-color: var(--line);
 	border-bottom: none;
@@ -247,7 +313,9 @@
  * Previous/Next buttons: the mockup's pager
  ******************************************/
 
+/* The space between the buttons matches the panel's side padding */
 .widget-prev-next {
+	--prev-next-gap: var(--panel-padding);
 	margin-top: calc(var(--rhythm) * 6);
 }
 
@@ -286,6 +354,18 @@
  * <style> keyed on #scrollspy, so these selectors
  * win by specificity, not by order
  ******************************************/
+
+/* The mockup's "On this page" label, shown once the outline has entries */
+.widgets.RIGHT #scrollspy:has(.scrollspy-item)::before {
+	content: "On this page";
+	display: block;
+	margin-bottom: 10px;
+	font-size: 11px;
+	line-height: 1.7;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--faint);
+}
 
 .widgets.RIGHT #scrollspy .scrollspy-item {
 	padding: 3px 0px 3px 12px;
@@ -338,4 +418,12 @@
 
 .widgets.TOP .breadcrumbs a:last-child {
 	color: var(--text);
+}
+
+.widget-prev-next .prev-next-arrow {
+	color: var(--muted);
+}
+
+.widget-prev-next .prev-next-link:hover .prev-next-arrow {
+	color: var(--teal);
 }

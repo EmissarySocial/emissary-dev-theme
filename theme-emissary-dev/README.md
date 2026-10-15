@@ -6,8 +6,8 @@ The site theme for [emissary.dev](https://emissary.dev): a dark, editor-style lo
 
 ## Files
 
-- [page.html](page.html) is the outer page: the head and foot includes, the `<nav>` bar, and the `<main>` element that htmx swaps on every navigation.
-- [navigation.html](navigation.html) renders the nav bar: top-level pages, then the signed-in user's icons or the Sign In link.
+- [page.html](page.html) is the outer page: the head and foot includes, the navigation, and the `<main>` element that htmx swaps on every navigation.
+- [navigation.html](navigation.html) renders the skip link, the desktop `<nav>` bar (top-level pages, then the signed-in user's icons or the Sign In link), and the mobile menu: a fixed control in the top-right corner that opens a full-screen sheet of the same links. It follows `theme-minimal`'s mobile menu.
 - [includes-head.html](includes-head.html) and [includes-foot.html](includes-foot.html) load the global and theme stylesheets, then htmx, hyperscript, and the global scripts.
 - [stylesheet/](stylesheet/) holds the numbered CSS files that the `stylesheet` bundle joins in filename order and minifies, served as `/.themes/emissary-dev/stylesheet`:
   - `00-fonts.css` declares the Hack faces, served from the `fontpack` theme.
@@ -17,6 +17,7 @@ The site theme for [emissary.dev](https://emissary.dev): a dark, editor-style lo
   - `05-dark-only.css` restates the few `theme-global` rules that otherwise apply only in OS dark mode.
   - `06-article.css` lays the article view out as an editor: LEFT widgets as the Explorer rail, the content column's `layout-*` wrapper as the document panel, RIGHT widgets outside it on the page background, `widget-navigation-list` as a file tree, the sibling tabs on the panel's top edge, `widget-scrollspy` as the outline rail, `widget-breadrumbs` as the breadcrumb, and `widget-prev-next` as the mockup's pager.
   - `07-cards.css` gives `.card` the shape of the mockup's callout, and adds `.magenta`, `.teal`, `.gold`, and `.gray` variants: a tinted wash, a dim border, and bright titles and icons. Cards keep taking their spacing from utility classes such as `.padding`.
+  - `08-nav-menu.css` styles the mobile menu below 640px, and hides the desktop bar there. The current page is marked like the Explorer tree.
 
 The sibling tabs are their own widget, [widget-sibling-tabs](../widget-sibling-tabs/README.md), in this repository. Place it in an article's TOP slot.
 

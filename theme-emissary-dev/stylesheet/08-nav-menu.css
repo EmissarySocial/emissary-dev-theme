@@ -1,0 +1,185 @@
+/******************************************
+ * Mobile Navigation Menu (below 640px)
+ *
+ * theme-minimal's mobile menu, in this theme's palette:
+ * a control fixed to the top-right corner and the
+ * full-screen sheet it opens.  Below 640px the desktop
+ * bar is hidden wholesale (see AGENTS.md).
+ ******************************************/
+
+/* Desktop: display:none, not hide-visual, or the checkbox is a dead tab stop */
+.nav-menu {
+	display: none;
+}
+
+@media screen and (width < 640px) {
+
+	/* RULE: hide the bar wholesale and restyle nothing inside it; the sheet replaces it */
+	nav {
+		display: none;
+	}
+
+	/* The landmark, and the one switch that turns the mobile layout on */
+	.nav-menu {
+		display: block;
+	}
+
+	/* RULE: position:fixed, never absolute, because this is also the close button over a fixed
+	   sheet.  z-index sits above the sheet and below the 1000 tier of modals */
+	.nav-menu-button {
+		position: fixed;
+		top: calc(var(--rhythm) * 1.5);
+		right: calc(var(--rhythm) * 1.5);
+		z-index: 901;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		/* 44px, the smallest reliably tappable target; not a rhythm multiple at 7px */
+		width: 44px;
+		height: 44px;
+
+		color: var(--text);
+		cursor: pointer;
+		background-color: var(--bg3);
+		border: 1px solid var(--line);
+		border-radius: 8px;
+		box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
+
+		& > .icon {
+			font-size: calc(var(--rhythm) * 3);
+			line-height: 1;
+		}
+	}
+
+	/* Closed shows the hamburger, open shows the X: one control, one tab stop */
+	.nav-menu-button > .nav-menu-close {
+		display: none;
+	}
+
+	.nav-menu-toggle:checked + .nav-menu-button > .nav-menu-open {
+		display: none;
+	}
+
+	.nav-menu-toggle:checked + .nav-menu-button > .nav-menu-close {
+		display: block;
+	}
+
+	.nav-menu-toggle:checked + .nav-menu-button {
+		color: var(--magenta-hi);
+		border-color: var(--magenta-dim);
+	}
+
+	/* The focused element is the off-screen checkbox, so the ring is drawn on its label */
+	.nav-menu-toggle:focus-visible + .nav-menu-button {
+		outline: 1px solid var(--focus-color);
+		outline-offset: 2px;
+	}
+
+	/* The sheet, hidden until the checkbox is checked */
+	.nav-menu-panel {
+		position: fixed;
+		inset: 0px;
+		z-index: 900;
+
+		display: flex;
+		flex-direction: column;
+
+		/* RULE: visibility, not display, which cannot transition out */
+		visibility: hidden;
+		opacity: 0;
+		transform: scale(0.98);
+		transition: opacity var(--motion-base) var(--motion-ease), transform var(--motion-base) var(--motion-ease), visibility 0s linear var(--motion-base);
+
+		background-color: var(--bg1);
+
+		/* Clears the control, which is fixed over this sheet's own top-right corner */
+		padding-top: calc(var(--rhythm) * 9);
+
+		/* RULE: `contain`, not `none`, or a swipe scrolls the document behind the sheet */
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+
+	.nav-menu-toggle:checked ~ .nav-menu-panel {
+		visibility: visible;
+		opacity: 1;
+		transform: scale(1);
+		transition: opacity var(--motion-base) var(--motion-ease), transform var(--motion-base) var(--motion-ease), visibility 0s linear 0s;
+	}
+
+	/* RULE: zero the delay as well as the duration, or an invisible sheet swallows taps */
+	@media (prefers-reduced-motion: reduce) {
+
+		.nav-menu-panel,
+		.nav-menu-toggle:checked ~ .nav-menu-panel {
+			transition-delay: 0s;
+		}
+	}
+
+	/* Rows, styled like the Explorer tree */
+	.nav-menu-panel a {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: calc(var(--rhythm) * 1.5);
+
+		padding: calc(var(--rhythm) * 2) calc(var(--rhythm) * 3);
+		border-bottom: 1px solid var(--line);
+		border-left: 2px solid transparent;
+
+		color: var(--muted);
+		font-size: calc(var(--rhythm) * 2.25);
+		line-height: 1.4;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			color: var(--text);
+			background-color: var(--bg4);
+		}
+
+		/* Set server-side from .NavigationID, not by SelectNav */
+		&.selected {
+			color: var(--magenta-hi);
+			background-color: var(--magenta-wash);
+			border-left-color: var(--magenta);
+		}
+
+		& > .icon {
+			font-size: calc(var(--rhythm) * 2.75);
+			line-height: 1;
+			flex-shrink: 0;
+			color: var(--teal);
+		}
+
+		& > .label {
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+
+	/* The account links sit apart from the site's pages */
+	.nav-menu-account {
+		margin-top: calc(var(--rhythm) * 3);
+		border-top: 1px solid var(--line);
+	}
+
+	/* Join Now is a call to action, so it reads as a button rather than one more row */
+	.nav-menu-panel a.primary {
+		justify-content: center;
+		margin: calc(var(--rhythm) * 3);
+		padding: calc(var(--rhythm) * 1.5) calc(var(--rhythm) * 3);
+		border: none;
+		border-radius: 8px;
+		background-color: var(--button-primary-background);
+		color: var(--button-primary-color);
+
+		&:hover,
+		&:focus {
+			background-color: var(--button-primary-background-hover);
+			color: var(--button-primary-color-hover);
+		}
+	}
+}

@@ -44,3 +44,23 @@ a:hover {
 	outline: 1px solid var(--focus-color);
 	outline-offset: 2px;
 }
+
+/* Headings at the mockup's sizes, on the rhythm scale: h1 26px and h2 17px against
+   13px body text.  The mockup has no h3, so it stays at body size, in bold */
+h1 {
+	font-size: calc(var(--rhythm) * 3.75);
+	line-height: calc(var(--rhythm) * 5);
+	margin-bottom: calc(var(--rhythm) * 1);
+}
+
+h2 {
+	font-size: calc(var(--rhythm) * 2.5);
+	line-height: calc(var(--rhythm) * 3);
+	margin-top: calc(var(--rhythm) * 6);
+	margin-bottom: calc(var(--rhythm) * 2);
+}
+
+h3 {
+	font-size: calc(var(--rhythm) * 2);
+	line-height: calc(var(--rhythm) * 3);
+}
