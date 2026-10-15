@@ -22,7 +22,7 @@ As in `theme-global`, `--white` is the page surface (`--gray00`) and `--black` t
 
 Templates across Emissary are written against the classes documented in `theme-global/README.md` and the ones copied from `theme-default` (the nav bar, `#menu-bar`, `.page`, `.framed`, `.app`, `.pill`). This theme restyles those classes; it does not invent parallel ones. A piece of the mockup that matches an existing widget is built from that widget: the tab strip from the ARIA tabs in `03-widgets-tabs.css`, the version badges from `.pill`, callouts from `.info` or `.alert-*`. A new class is added only where no existing one fits, and is named for this theme. Ben decided this on 2026-10-14.
 
-The card variants `.magenta`, `.teal`, `.gold`, and `.gray` are the deliberate exception: Ben asked for them by those names as modifiers on `.card`, following the pattern of `.tag.blue` and `.tag.green`. They are scoped to `.card` in [stylesheet/07-cards.css](stylesheet/07-cards.css), so they mean nothing on other elements.
+The card variants `.magenta`, `.teal`, `.gold`, `.gray`, `.violet`, `.blue`, `.green`, `.coral`, `.orange`, `.indigo`, `.lime`, `.jade`, and `.rose` are the deliberate exception: Ben asked for them by those names as modifiers on `.card`, following the pattern of `.tag.blue` and `.tag.green`. They are scoped to `.card` in [stylesheet/07-cards.css](stylesheet/07-cards.css), so they mean nothing on other elements.
 
 ## Type sizes stay on the rhythm scale, at 7px
 
@@ -39,4 +39,14 @@ Two differences from minimal. The signed-in links (Profile, Inbox, and the rest)
 ## The title bar's height is one token, and the sticky rails depend on it
 
 [stylesheet/09-titlebar.css](stylesheet/09-titlebar.css) sets `--titlebar-height`. The sticky LEFT and RIGHT rails start at that height plus `2r`, and `scroll-padding-top` keeps in-page anchors (the outline's links) from landing under the bar. Change the bar's height through the token, never in one place. The search box is `aria-hidden` because it does nothing yet (D2); remove that when it gets behavior.
+
+## Cards never show the Markdown heading marks
+
+The `#`, `##`, and `###` marks in [stylesheet/06-article.css](stylesheet/06-article.css) are for the article's own headings. [stylesheet/07-cards.css](stylesheet/07-cards.css) turns them off inside any `.card` with a selector at the same specificity as the mark rules, which wins only because `07` loads after `06`. Keep that order, or raise the specificity, when renaming either file.
+
+## The code bar is built in the browser, and only once per block
+
+The Markdown output is a bare `<pre><code class="language-…">`, so [javascript/code-bar.js](javascript/code-bar.js) adds the `.codeblock` wrapper and its bar on first load and on every `htmx:load`. It skips a block already inside a `.codeblock`, because `htmx:load` can fire more than once over the same content. It writes page text only through `textContent`. Without scripting the bare `<pre>` keeps the full frame from `10-markdown.css`, so nothing looks broken. Like every file in a javascript bundle, it ends with a semicolon (see `theme-global/AGENTS.md`).
+
+The Copy button works through one `click` listener on the document, so buttons on swapped pages need no binding of their own. It copies `pre.textContent`, which is the source text even after Prism wraps it in tokens. `navigator.clipboard` can be missing or refuse, as it does outside a secure context and in some embedded views, so the fallback selects the code and the button says "Selected" rather than "Copied", so it never claims a copy that did not happen.
 

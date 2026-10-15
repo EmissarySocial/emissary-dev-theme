@@ -1,0 +1,133 @@
+/******************************************
+ * Prism Palette
+ *
+ * Syntax colors for Prism, from the mockup's
+ * prism-relay-warm.css: magenta keywords, amber
+ * functions, tan strings, lavender numbers.  Only the
+ * colors are here; 10-markdown.css draws the frame.
+ ******************************************/
+
+/* Syntax colors.  Surfaces come from 00-tokens.css, so they follow the theme */
+:root {
+	--prism-text: var(--text);
+
+	--prism-keyword: #e64ba0;
+	--prism-function: #e6b35c;
+	--prism-string: #c9a978;
+	--prism-number: #b88fd6;
+	--prism-type: #e0826a;
+	--prism-property: #d9a0bd;
+	--prism-builtin: #8fc4b0;
+	--prism-operator: #a89f92;
+	--prism-comment: #6e6759;
+	--prism-regex: #ff6db8;
+
+	--prism-inserted: #95b873;
+	--prism-deleted: #d96a5f;
+
+	--prism-selection: rgba(138, 52, 99, 0.55);
+}
+
+/* Prism adds language-… to the <pre> as well, so the code inherits this color */
+pre[class*="language-"],
+code[class*="language-"] {
+	color: var(--prism-text);
+}
+
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+	background: var(--prism-selection);
+	color: #ffffff;
+}
+
+/******************************************
+ * Tokens, as the mockup's palette colors them
+ ******************************************/
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: var(--prism-comment);
+	font-style: italic;
+}
+
+.token.punctuation {
+	color: var(--prism-operator);
+}
+
+.token.operator,
+.token.entity {
+	color: var(--prism-operator);
+}
+
+.token.keyword,
+.token.atrule,
+.token.selector {
+	color: var(--prism-keyword);
+}
+
+.token.function,
+.token.function .token.maybe-class-name {
+	color: var(--prism-function);
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.url {
+	color: var(--prism-string);
+}
+
+.token.number,
+.token.boolean,
+.token.constant,
+.token.symbol {
+	color: var(--prism-number);
+}
+
+.token.class-name,
+.token.maybe-class-name,
+.token.tag,
+.token.builtin.class-name,
+.token.namespace {
+	color: var(--prism-type);
+}
+
+.token.namespace { opacity: 0.85; }
+
+.token.property,
+.token.attr-name,
+.token.variable,
+.token.parameter {
+	color: var(--prism-property);
+}
+
+.token.builtin,
+.token.support,
+.token.known-class-name {
+	color: var(--prism-builtin);
+}
+
+.token.regex,
+.token.important {
+	color: var(--prism-regex);
+}
+
+.token.important,
+.token.bold { font-weight: 700; }
+.token.italic { font-style: italic; }
+
+.token.inserted { color: var(--prism-inserted); }
+.token.deleted  { color: var(--prism-deleted); }
+
+/* Go-specific niceties (prism-go) */
+.language-go .token.builtin { color: var(--prism-builtin); }
+
+/* TS/JS: highlight arrow + spread like operators, decorators like keywords */
+.token.arrow,
+.token.spread { color: var(--prism-operator); }
+.token.decorator,
+.token.annotation { color: var(--prism-keyword); }

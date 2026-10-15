@@ -2,8 +2,10 @@
  * Cards
  *
  * theme-global's .card, in the shape of the mockup's
- * callout, plus four color variants: .magenta, .teal,
- * .gold, and .gray.  Spacing stays with utility
+ * callout, plus thirteen color variants: .magenta,
+ * .teal, .gold, .gray, .violet, .blue, .green, .coral,
+ * .orange, .indigo, .lime, .jade, and .rose, each with
+ * its border, titles, and bold text in one accent color.  Spacing stays with utility
  * classes such as .padding, as everywhere else.
  ******************************************/
 
@@ -44,22 +46,92 @@
 	--card-accent-wash: var(--neutral-wash);
 }
 
-/* A tinted wash and a dim border, as the mockup's callout */
-.card:is(.magenta, .teal, .gold, .gray) {
+.card.violet {
+	--card-accent: var(--violet);
+	--card-accent-hi: var(--violet-hi);
+	--card-accent-dim: var(--violet-dim);
+	--card-accent-wash: var(--violet-wash);
+}
+
+.card.blue {
+	--card-accent: var(--blue);
+	--card-accent-hi: var(--blue-hi);
+	--card-accent-dim: var(--blue-dim);
+	--card-accent-wash: var(--blue-wash);
+}
+
+.card.green {
+	--card-accent: var(--green);
+	--card-accent-hi: var(--green-hi);
+	--card-accent-dim: var(--green-dim);
+	--card-accent-wash: var(--green-wash);
+}
+
+.card.coral {
+	--card-accent: var(--coral);
+	--card-accent-hi: var(--coral-hi);
+	--card-accent-dim: var(--coral-dim);
+	--card-accent-wash: var(--coral-wash);
+}
+
+.card.orange {
+	--card-accent: var(--orange);
+	--card-accent-hi: var(--orange-hi);
+	--card-accent-dim: var(--orange-dim);
+	--card-accent-wash: var(--orange-wash);
+}
+
+.card.indigo {
+	--card-accent: var(--indigo);
+	--card-accent-hi: var(--indigo-hi);
+	--card-accent-dim: var(--indigo-dim);
+	--card-accent-wash: var(--indigo-wash);
+}
+
+.card.lime {
+	--card-accent: var(--lime);
+	--card-accent-hi: var(--lime-hi);
+	--card-accent-dim: var(--lime-dim);
+	--card-accent-wash: var(--lime-wash);
+}
+
+.card.jade {
+	--card-accent: var(--jade);
+	--card-accent-hi: var(--jade-hi);
+	--card-accent-dim: var(--jade-dim);
+	--card-accent-wash: var(--jade-wash);
+}
+
+.card.rose {
+	--card-accent: var(--rose);
+	--card-accent-hi: var(--rose-hi);
+	--card-accent-dim: var(--rose-dim);
+	--card-accent-wash: var(--rose-wash);
+}
+
+/* A tinted wash, and a border in the accent itself */
+.card:is(.magenta, .teal, .gold, .gray, .violet, .blue, .green, .coral, .orange, .indigo, .lime, .jade, .rose) {
 	background-color: var(--card-accent-wash);
-	border-color: var(--card-accent-dim);
+	border-color: var(--card-accent);
 }
 
-/* Titles take the bright accent; the callout's title is bold text */
-.card:is(.magenta, .teal, .gold, .gray) :is(h1, h2, h3, h4, h5, h6, b, strong, .bold) {
-	color: var(--card-accent-hi);
-}
-
-/* Icons take the accent, as the callout's glyph does */
-.card:is(.magenta, .teal, .gold, .gray) .bi {
+/* Titles and bold text match the border; the dim step is too dark for text */
+.card:is(.magenta, .teal, .gold, .gray, .violet, .blue, .green, .coral, .orange, .indigo, .lime, .jade, .rose) :is(h1, h2, h3, h4, h5, h6, b, strong, .bold) {
 	color: var(--card-accent);
 }
 
-.card:is(.magenta, .teal, .gold, .gray).clickable:hover {
-	border-color: var(--card-accent);
+/* RULE: no Markdown "#" marks on a card's headings, wherever the card sits.  The second selector
+   matches the specificity of 06-article.css's mark rules, and wins because this file loads later */
+.card :is(h1, h2, h3, h4, h5, h6)::before,
+.content-main .card :is(h1, h2, h3, h4, h5, h6)::before {
+	content: none;
+}
+
+/* Icons take the accent, as the callout's glyph does */
+.card:is(.magenta, .teal, .gold, .gray, .violet, .blue, .green, .coral, .orange, .indigo, .lime, .jade, .rose) .bi {
+	color: var(--card-accent);
+}
+
+.card:is(.magenta, .teal, .gold, .gray, .violet, .blue, .green, .coral, .orange, .indigo, .lime, .jade, .rose).clickable:hover {
+	border-color: var(--card-accent-hi);
 }

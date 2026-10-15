@@ -10,7 +10,8 @@
 	color-scheme: dark;
 
 	/* Surfaces, darkest to lightest */
-	--bg0: #000000;
+	/* Halfway between black and --bg1, not the mockup's pure black: Ben found black too stark */
+	--bg0: #100f0e;
 	--bg1: #211e1b;
 	--bg2: #262320;
 	--bg3: #2d2925;
@@ -43,6 +44,56 @@
 	--neutral-hi: #e8e2d6;
 	--neutral-dim: #5f594f;
 	--neutral-wash: rgba(143, 135, 123, 0.08);
+
+	/* Four more card accents, built the same way: violet from the mockup's number color,
+	   then blue, green, and coral, chosen to sit apart from teal, gold, and magenta */
+	--violet: #b88fd6;
+	--violet-hi: #d4b0f0;
+	--violet-dim: #6e5680;
+	--violet-wash: rgba(184, 143, 214, 0.08);
+
+	--blue: #5b9ee6;
+	--blue-hi: #82bcff;
+	--blue-dim: #375f8a;
+	--blue-wash: rgba(91, 158, 230, 0.08);
+
+	--green: #7cbf6a;
+	--green-hi: #9edc8b;
+	--green-dim: #4a7340;
+	--green-wash: rgba(124, 191, 106, 0.08);
+
+	--coral: #e6705c;
+	--coral-hi: #ff9180;
+	--coral-dim: #8a4337;
+	--coral-wash: rgba(230, 112, 92, 0.08);
+
+	/* Orange sits between coral and gold: hue 26°, against coral's 9° and gold's 38° */
+	--orange: #e78f4b;
+	--orange-hi: #ffae70;
+	--orange-dim: #8b562d;
+	--orange-wash: rgba(231, 143, 75, 0.08);
+
+	/* Indigo and lime fill the two widest gaps on the cool side: blue to violet, and gold to green */
+	--indigo: #7d78e3;
+	--indigo-hi: #a29dff;
+	--indigo-dim: #4b4888;
+	--indigo-wash: rgba(125, 120, 227, 0.08);
+
+	--lime: #b4c95e;
+	--lime-hi: #d4e87e;
+	--lime-dim: #6c7938;
+	--lime-wash: rgba(180, 201, 94, 0.08);
+
+	/* Jade between green and teal, and rose between magenta and coral, complete the wheel */
+	--jade: #60be7f;
+	--jade-hi: #84dca0;
+	--jade-dim: #3a724c;
+	--jade-wash: rgba(96, 190, 127, 0.08);
+
+	--rose: #e5617c;
+	--rose-hi: #ff8aa3;
+	--rose-dim: #893a4a;
+	--rose-wash: rgba(229, 97, 124, 0.08);
 
 	--mono: "Hack", "Source Code Pro", ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
 

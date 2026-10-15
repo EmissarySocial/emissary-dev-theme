@@ -1,0 +1,240 @@
+/******************************************
+ * Article Markdown
+ *
+ * The rendered article body (.e-content) in the
+ * mockup's .doc style: readable line lengths, inline
+ * code chips, framed code blocks, blockquotes as the
+ * magenta callout, tables as the .params table, and
+ * no heading link icons.
+ * Code colors are in 11-prism.css.
+ ******************************************/
+
+/* theme-global gives code its own font stack, so Hack is restated for every code element */
+code,
+pre,
+kbd,
+samp {
+	font-family: var(--mono);
+}
+
+/******************************************
+ * Text
+ ******************************************/
+
+.e-content > p,
+.e-content > ul,
+.e-content > ol {
+	max-width: 68ch;
+	margin-top: 0px;
+	margin-bottom: calc(var(--rhythm) * 2);
+}
+
+.e-content > ul,
+.e-content > ol {
+	padding-left: calc(var(--rhythm) * 3);
+}
+
+.e-content li {
+	margin-bottom: calc(var(--rhythm) * 0.5);
+}
+
+.e-content li::marker {
+	color: var(--faint);
+}
+
+.e-content strong,
+.e-content b {
+	color: var(--neutral-hi);
+}
+
+.e-content hr {
+	margin: calc(var(--rhythm) * 4) 0px;
+	border: none;
+	border-top: 1px solid var(--line);
+}
+
+.e-content img {
+	max-width: 100%;
+	border-radius: 8px;
+}
+
+/******************************************
+ * Heading links: hidden for good.  theme-global shows
+ * the renderer's link icon on heading hover; the
+ * second selector outranks that rule
+ ******************************************/
+
+.header-hover-show,
+:is(h1, h2, h3, h4, h5, h6):hover .header-hover-show {
+	display: none;
+}
+
+/******************************************
+ * Code
+ ******************************************/
+
+/* Inline code: a small chip in the bright magenta */
+.e-content :not(pre) > code {
+	padding: 1px 6px;
+	font-size: 0.9em;
+	white-space: normal;
+	color: var(--magenta-hi);
+	background-color: var(--bg3);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+}
+
+/* Code blocks: the mockup's .codeblock frame.  javascript/code-bar.js wraps each block in a
+   .codeblock with a title bar; until it runs, or with scripting off, the bare <pre> keeps the frame */
+.e-content pre {
+	margin: calc(var(--rhythm) * 2.5) 0px calc(var(--rhythm) * 3.5);
+	padding: calc(var(--rhythm) * 2) calc(var(--rhythm) * 2.5);
+	overflow-x: auto;
+	background-color: var(--bg3);
+	border: 1px solid var(--line);
+	border-radius: 8px;
+}
+
+.e-content pre > code {
+	padding: 0px;
+	font-size: calc(var(--rhythm) * 1.75);
+	line-height: 1.65;
+	white-space: pre;
+	tab-size: 4;
+	color: var(--text);
+	background-color: transparent;
+	border: none;
+}
+
+/* The wrapper takes over the frame, so the block inside it sits flush under the bar */
+.e-content .codeblock {
+	margin: calc(var(--rhythm) * 2.5) 0px calc(var(--rhythm) * 3.5);
+	overflow: hidden;
+	background-color: var(--bg3);
+	border: 1px solid var(--line);
+	border-radius: 8px;
+}
+
+.e-content .codeblock > pre {
+	margin: 0px;
+	border: none;
+	border-radius: 0px;
+}
+
+/* The bar: the language in teal, and the Copy button at the right */
+.e-content .codeblock-bar {
+	display: flex;
+	align-items: center;
+	gap: calc(var(--rhythm) * 1.5);
+	padding: var(--rhythm) calc(var(--rhythm) * 2);
+	font-size: 11px;
+	line-height: calc(var(--rhythm) * 2.5);
+	color: var(--muted);
+	background-color: var(--bg1);
+	border-bottom: 1px solid var(--line);
+}
+
+.e-content .codeblock-language {
+	color: var(--teal);
+}
+
+.e-content .codeblock-copy {
+	margin: 0px 0px 0px auto;
+	padding: 2px 10px;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	color: var(--muted);
+	background-color: transparent;
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.e-content .codeblock-copy:hover {
+	color: var(--text);
+	background-color: transparent;
+	border-color: var(--faint);
+}
+
+/* For a moment after a click: "Copied", or "Selected" when the clipboard was refused */
+.e-content .codeblock-copy.copied,
+.e-content .codeblock-copy.copied:hover {
+	color: var(--teal);
+	border-color: var(--teal-dim);
+}
+
+/******************************************
+ * Blockquotes: the mockup's magenta callout
+ ******************************************/
+
+.e-content blockquote {
+	max-width: 70ch;
+	margin: calc(var(--rhythm) * 2.5) 0px calc(var(--rhythm) * 3.5);
+	padding: calc(var(--rhythm) * 2) calc(var(--rhythm) * 2.25);
+	color: var(--text);
+	background-color: var(--magenta-wash);
+	border: 1px solid var(--magenta-dim);
+	border-radius: 8px;
+}
+
+.e-content blockquote > :last-child {
+	margin-bottom: 0px;
+}
+
+.e-content blockquote strong,
+.e-content blockquote b {
+	color: var(--magenta-hi);
+}
+
+/******************************************
+ * Tables: the mockup's .params table
+ ******************************************/
+
+.e-content table {
+	width: 100%;
+	margin: calc(var(--rhythm) * 2) 0px calc(var(--rhythm) * 3.5);
+	font-size: calc(var(--rhythm) * 1.75);
+	border-collapse: collapse;
+}
+
+.e-content th {
+	padding: var(--rhythm) calc(var(--rhythm) * 2);
+	text-align: left;
+	font-size: 11px;
+	font-weight: var(--weight);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--faint);
+	border-bottom: 1px solid var(--line);
+}
+
+.e-content td {
+	padding: calc(var(--rhythm) * 1.25) calc(var(--rhythm) * 2);
+	vertical-align: top;
+	border-bottom: 1px solid var(--line);
+}
+
+.e-content tr:last-child td {
+	border-bottom: none;
+}
+
+/******************************************
+ * Definition lists: the term in body text, the
+ * definition stepped in and muted
+ ******************************************/
+
+.e-content dl {
+	max-width: 68ch;
+	margin: 0px 0px calc(var(--rhythm) * 2);
+}
+
+.e-content dt {
+	font-weight: 700;
+	color: var(--neutral-hi);
+}
+
+.e-content dd {
+	margin: 0px 0px calc(var(--rhythm) * 1.5) calc(var(--rhythm) * 3);
+	color: var(--muted);
+}

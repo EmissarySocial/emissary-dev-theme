@@ -119,30 +119,30 @@
 /******************************************
  * Markdown heading marks: a magenta "#", "##", or
  * "###" before article headings, as in the mockup.
- * Only the title block and the article body, so
- * headings inside widgets stay plain
+ * Only the title block and the article body's own
+ * headings, so headings in widgets and cards stay plain
  ******************************************/
 
 .content-main > [class^="layout-"] > h1::before,
-.content-main .e-content h1::before {
+.content-main .e-content > h1::before {
 	content: "#";
 	margin-right: calc(var(--rhythm) * 1.5);
 }
 
 .content-main > [class^="layout-"] > h2::before,
-.content-main .e-content h2::before {
+.content-main .e-content > h2::before {
 	content: "##";
 	margin-right: var(--rhythm);
 }
 
 .content-main > [class^="layout-"] > h3::before,
-.content-main .e-content h3::before {
+.content-main .e-content > h3::before {
 	content: "###";
 	margin-right: var(--rhythm);
 }
 
 .content-main > [class^="layout-"] > :is(h1, h2, h3)::before,
-.content-main .e-content :is(h1, h2, h3)::before {
+.content-main .e-content > :is(h1, h2, h3)::before {
 	font-weight: var(--weight);
 	color: var(--magenta);
 }

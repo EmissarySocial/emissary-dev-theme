@@ -2,4 +2,7 @@
 <script type="text/javascript" src="/.themes/global/resources/htmx-1.9.12/htmx.min.js" rel="preload"></script>
 <script type="text/javascript" src="/.themes/global/resources/htmx-1.9.12/ext/sse.js" rel="preload"></script>
 <script type="text/javascript" src="/.themes/global/resources/hyperscript-0.9.93/_hyperscript.min.js" rel="preload"></script>
+<!-- Prism loads before the global bundle, whose prism.js defines HJSON and re-highlights after htmx swaps -->
+<script type="text/javascript" src="/.themes/global/resources/prism-1.30.0/prism.min.js"></script>
 <script type="text/javascript" src="/.themes/global/javascript" rel="preload"></script>
+<script type="text/javascript" src="/.themes/emissary-dev/javascript"></script>
