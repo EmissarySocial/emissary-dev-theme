@@ -70,3 +70,7 @@ An article page links `/.templates/article-base/stylesheet` after the theme styl
 ## Text is never dimmer than `--muted`, and every hover is teal
 
 Every text color passes WCAG AA, 4.5:1, on the surface behind it (D24 in the project plan). `--muted` is the floor: it is 4.5:1 on `--bg3`, the lightest surface that holds text. `--faint` is 2.2:1, so it is for borders, rules, and the tab dots, never for text, however small or decorative the label looks. Primary buttons use `--button-primary-color` (`--bg0`), because white fails on both magenta and teal. Every hover is teal and every selected state magenta (D23); a new hover rule follows that, and keeps the selected rule more specific so the current page stays magenta under the pointer. `--link-color` is the one known exception at 4.38:1, kept by choice.
+
+## The Markdown editor's colors are this theme's, at one class more than EasyMDE's
+
+[stylesheet/12-editor.css](stylesheet/12-editor.css) recolors EasyMDE's CodeMirror tokens with the Prism palette, because EasyMDE's own colors were made for a white page (its attribute values are navy, 1.4:1 here). The editor template links EasyMDE's stylesheet inside the page, after this theme's, so every rule starts with `.EasyMDEContainer` to outrank `.cm-s-easymde .cm-*`. It also sets the editor's headings to the article's sizes, replacing EasyMDE's viewport-scaled ones.

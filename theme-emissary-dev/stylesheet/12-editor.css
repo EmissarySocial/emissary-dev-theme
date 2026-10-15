@@ -1,0 +1,66 @@
+/******************************************
+ * Markdown Editor
+ *
+ * EasyMDE's colors were made for a white page, and its navy
+ * and purple almost vanish here.  These match the Prism
+ * palette, so markup reads the same in the editor as in a
+ * rendered code block, and every color passes 4.5:1.
+ ******************************************/
+
+/* RULE: every selector starts with .EasyMDEContainer.  The editor's own stylesheet is linked
+   inside the page, after this one, so a rule at its specificity would lose */
+
+/* Inline HTML: tag names, attribute names, and attribute values, as Prism colors them */
+.EasyMDEContainer .cm-s-easymde .cm-tag {
+	color: var(--prism-type);
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-attribute {
+	color: var(--prism-property);
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-string {
+	color: var(--prism-string);
+}
+
+/* Links: the text as the article shows inline links, and the URL behind it muted */
+.EasyMDEContainer .cm-s-easymde .cm-link {
+	color: var(--magenta-hi);
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-url,
+.EasyMDEContainer .cm-s-easymde .cm-string.cm-url {
+	color: var(--muted);
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-quote {
+	color: var(--muted);
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-hr {
+	color: var(--muted);
+}
+
+/* Code: the article's inline code, on a step lighter than the editor background */
+.EasyMDEContainer .cm-s-easymde .cm-comment {
+	color: var(--magenta-hi);
+	background-color: var(--bg4);
+}
+
+/* Heading marks in magenta, as the article draws them (06-article.css) */
+.EasyMDEContainer .cm-s-easymde .cm-formatting-header {
+	color: var(--magenta-hi);
+}
+
+/* Headings at the article's sizes (04-type.css), not EasyMDE's viewport-scaled ones */
+.EasyMDEContainer .cm-s-easymde .cm-header-1 {
+	font-size: calc(var(--rhythm) * 3.75);
+}
+
+.EasyMDEContainer .cm-s-easymde .cm-header-2 {
+	font-size: calc(var(--rhythm) * 2.5);
+}
+
+.EasyMDEContainer .cm-s-easymde :is(.cm-header-3, .cm-header-4, .cm-header-5, .cm-header-6) {
+	font-size: calc(var(--rhythm) * 2);
+}

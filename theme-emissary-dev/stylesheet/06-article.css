@@ -96,9 +96,13 @@
 		margin-bottom: 0px !important;
 	}
 
+	/* RULE: a zero flex-basis, so the panel takes the room beside the Explorer whatever its content.
+	   With viewer.css's auto basis, wide content (a two-column layout) asked for its full width, and
+	   where the row wraps (860px to 1179px) the whole panel dropped below the Explorer */
 	.page > article.content > .content-main {
 		display: flex;
 		flex-direction: column;
+		flex: 1 1 0px;
 		min-width: 0px;
 		padding: calc(var(--rhythm) * 2) calc(var(--rhythm) * 3.5) calc(var(--rhythm) * 8);
 	}
