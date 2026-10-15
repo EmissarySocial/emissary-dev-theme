@@ -1,0 +1,158 @@
+/******************************************
+ * Title Bar
+ *
+ * The desktop <nav> as the mockup's title bar: a 44px
+ * sticky strip with the brand, the page links, the
+ * search mockup, and the account links.  Below 640px
+ * the bar is hidden by 08-nav-menu.css, so nothing
+ * here sets nav's display.
+ ******************************************/
+
+/* The bar's height, which the sticky rails and in-page anchors clear */
+:root {
+	--titlebar-height: 44px;
+	scroll-padding-top: calc(var(--titlebar-height) + var(--rhythm) * 2);
+}
+
+nav.titlebar {
+	position: sticky;
+	top: 0px;
+	z-index: 20;
+	height: var(--titlebar-height);
+	padding: 0px calc(var(--rhythm) * 2);
+	font-size: calc(var(--rhythm) * 2);
+	color: var(--muted);
+	background-color: var(--bg1);
+	border-bottom: 1px solid var(--line);
+}
+
+/* Full width, matching the article page's frame instead of theme-default's centered 1100px */
+nav.titlebar .framed {
+	align-items: center;
+	justify-content: flex-start;
+	gap: calc(var(--rhythm) * 0.5);
+	width: 100%;
+	max-width: 1440px;
+	margin: 0px auto;
+}
+
+/* Page and account links: quiet text that lights up on hover, magenta when current */
+nav.titlebar a {
+	flex-direction: row;
+	align-items: center;
+	gap: calc(var(--rhythm) * 0.75);
+	margin: 0px;
+	padding: calc(var(--rhythm) * 0.5) calc(var(--rhythm) * 1.25);
+	line-height: calc(var(--rhythm) * 3);
+	color: var(--muted);
+	background-color: transparent;
+	border-radius: 4px;
+
+	&:hover,
+	&:focus {
+		color: var(--text);
+		background-color: var(--bg4);
+		text-decoration: none;
+	}
+
+	&.selected,
+	&.selected:hover,
+	&.selected:focus {
+		color: var(--magenta-hi);
+		background-color: var(--magenta-wash);
+	}
+
+	&.primary {
+		color: #ffffff;
+		background-color: var(--magenta);
+
+		&:hover,
+		&:focus {
+			background-color: var(--magenta-hi);
+		}
+	}
+
+	& > .icon {
+		font-size: calc(var(--rhythm) * 2.5);
+		line-height: 1;
+	}
+}
+
+/******************************************
+ * Brand: a placeholder until the site has a logo
+ ******************************************/
+
+nav.titlebar a.titlebar-brand,
+nav.titlebar a.titlebar-brand:hover,
+nav.titlebar a.titlebar-brand:focus {
+	gap: var(--rhythm);
+	margin-right: calc(var(--rhythm) * 2);
+	padding-left: 0px;
+	color: var(--text);
+	background-color: transparent;
+}
+
+.titlebar-brand-mark {
+	font-weight: 700;
+	color: var(--magenta);
+}
+
+.titlebar-brand-name {
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+/******************************************
+ * Search: a styled mockup with no behavior (D2)
+ ******************************************/
+
+.titlebar-search {
+	display: flex;
+	align-items: center;
+	gap: var(--rhythm);
+	flex-shrink: 1;
+	width: min(320px, 30vw);
+	min-width: 0px;
+	margin-left: auto;
+	margin-right: calc(var(--rhythm) * 1.5);
+	padding: calc(var(--rhythm) * 0.75) calc(var(--rhythm) * 1.5);
+	line-height: calc(var(--rhythm) * 2);
+	color: var(--muted);
+	background-color: var(--bg3);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	cursor: text;
+	white-space: nowrap;
+
+	&:hover {
+		border-color: var(--faint);
+	}
+
+	& > .titlebar-search-text {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	& > kbd {
+		margin-left: auto;
+		padding: 1px 6px;
+		font-family: inherit;
+		font-size: 11px;
+		color: var(--muted);
+		background-color: var(--bg1);
+		border: 1px solid var(--line);
+		border-radius: 3px;
+	}
+}
+
+/******************************************
+ * Sticky rails start below the bar
+ ******************************************/
+
+@media screen and (min-width: 768px) {
+
+	.page > article.content > .widgets.LEFT > *,
+	.page > article.content > .widgets.RIGHT > * {
+		top: calc(var(--titlebar-height) + var(--rhythm) * 2);
+	}
+}

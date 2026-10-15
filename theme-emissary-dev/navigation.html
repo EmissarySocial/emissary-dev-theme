@@ -11,8 +11,16 @@
 <!-- RULE: the skip link sits outside both layouts, which are each hidden at some width. -->
 <a href="#main" class="hide-visual">Skip navigation</a>
 
-<nav>
+<!-- The mockup's title bar: brand, page links, search, then the account links (D3) -->
+<nav class="titlebar">
 	<div hx-push-url="true" hx-swap="transition:true" class="framed">
+
+		<!-- A placeholder brand until the site has a logo: not a .nav-item, so SelectNav ignores it -->
+		<a href="/" class="titlebar-brand turboclick" aria-label="{{.DomainLabel}} home">
+			<span class="titlebar-brand-mark" aria-hidden="true">▰▰</span>
+			<span class="titlebar-brand-name">{{.DomainLabel}}</span>
+		</a>
+
 		{{- if eq "STARTUP" .DomainStateID -}}
 			<a class="link nav-item turboclick" href="/startup">{ Startup Checklist }</a>
 		{{- else -}}
@@ -22,7 +30,13 @@
 				</a>
 			{{- end -}}
 		{{- end -}}
-		<span class="spacer"></span>
+
+		<!-- A styled mockup with no behavior yet (D2), so it stays out of the accessibility tree -->
+		<div class="titlebar-search" aria-hidden="true">
+			<span class="titlebar-search-icon">⌕</span>
+			<span class="titlebar-search-text">Search docs…</span>
+			<kbd>⌘K</kbd>
+		</div>
 
 		{{- if .IsAuthenticated -}}
 			<a href="/@me" id="nav-outbox" class="nav-item turboclick" aria-label="Profile">

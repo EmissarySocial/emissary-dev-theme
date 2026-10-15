@@ -36,3 +36,7 @@ One exception: the Explorer tree in the LEFT slot uses the mockup's sizes, 13px 
 
 Two differences from minimal. The signed-in links (Profile, Inbox, and the rest) stay in the desktop bar, as in `theme-default`, so the sheet repeats them under `.nav-menu-account`; without that they would vanish on a phone. And the control is a fixed 44px, because minimal's `--rhythm * 5.5` comes to only 38.5px at this theme's 7px rhythm.
 
+## The title bar's height is one token, and the sticky rails depend on it
+
+[stylesheet/09-titlebar.css](stylesheet/09-titlebar.css) sets `--titlebar-height`. The sticky LEFT and RIGHT rails start at that height plus `2r`, and `scroll-padding-top` keeps in-page anchors (the outline's links) from landing under the bar. Change the bar's height through the token, never in one place. The search box is `aria-hidden` because it does nothing yet (D2); remove that when it gets behavior.
+
