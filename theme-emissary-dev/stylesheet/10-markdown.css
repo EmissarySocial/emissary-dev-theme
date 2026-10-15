@@ -38,6 +38,39 @@ samp {
 	margin-bottom: calc(var(--rhythm) * 0.5);
 }
 
+/* Nested lists step in by the top level's indent, not the browser's 40px */
+.e-content li > :is(ul, ol) {
+	margin: calc(var(--rhythm) * 0.5) 0px 0px;
+	padding-left: calc(var(--rhythm) * 3);
+}
+
+/* A collapsed section: the summary reads as a control, and the opened content steps in under it */
+.e-content details {
+	max-width: 68ch;
+	margin: 0px 0px calc(var(--rhythm) * 2);
+}
+
+.e-content summary {
+	cursor: pointer;
+	color: var(--text);
+}
+
+.e-content summary::marker {
+	color: var(--muted);
+}
+
+.e-content summary:hover {
+	color: var(--teal);
+}
+
+.e-content details[open] > summary {
+	margin-bottom: var(--rhythm);
+}
+
+.e-content details > :not(summary) {
+	margin-left: calc(var(--rhythm) * 2.5);
+}
+
 /* A long URL or identifier breaks rather than pushing the panel wider than the screen */
 .e-content {
 	overflow-wrap: anywhere;
