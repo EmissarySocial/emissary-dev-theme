@@ -1,0 +1,14 @@
+<!-- Links swap <main> like every other navigation widget, so the tabs refresh with the page.
+     A div with role="navigation", never <nav>: theme stylesheets style every nav as the site bar -->
+<div role="navigation" class="widget widget-sibling-tabs" aria-label="Pages in this section" hx-target="main" hx-swap="innerHTML" hx-push-url="true">
+	<div role="tablist">
+		{{- $streamID := .StreamID -}}
+		{{- range $index, $sibling := .Siblings.Top60.ByRank.Slice -}}
+			{{- if eq $streamID $sibling.StreamID -}}
+				<a role="tab" aria-selected="true" aria-current="page" href="/{{$sibling.Token}}" hx-get="/{{$sibling.Token}}" class="turboclick">{{$sibling.Label}}</a>
+			{{- else -}}
+				<a role="tab" aria-selected="false" href="/{{$sibling.Token}}" hx-get="/{{$sibling.Token}}" class="turboclick">{{$sibling.Label}}</a>
+			{{- end -}}
+		{{- end -}}
+	</div>
+</div>

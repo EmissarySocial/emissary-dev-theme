@@ -1,0 +1,5 @@
+{
+	widgetId:"sibling-tabs"
+	label:"Sibling Tabs"
+	description:"Displays this stream and its siblings as a row of tabs, with this stream selected"
+}
