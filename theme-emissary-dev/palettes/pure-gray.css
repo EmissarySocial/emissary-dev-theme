@@ -1,0 +1,47 @@
+/******************************************
+ * Pure Gray Palette
+ *
+ * Each warm gray at its own perceived lightness (OKLab L), with no hue at all.
+ * Every neutral token in 00-tokens.css and
+ * 11-prism.css.  To use it, copy this file to
+ * stylesheet/99-palette.css (see README.md).
+ ******************************************/
+
+:root {
+	--bg0: #0f0f0f;
+	--bg1: #1f1f1f;
+	--bg2: #242424;
+	--bg3: #2a2a2a;
+	--bg4: #313131;
+	--line: #363636;
+	--text: #d3d3d3;
+	--muted: #888888;
+	--faint: #5a5a5a;
+	--neutral: #888888;
+	--neutral-hi: #e2e2e2;
+	--neutral-dim: #5a5a5a;
+	--white: #1f1f1f;
+	--gray00: #1f1f1f;
+	--gray01: #202020;
+	--gray02: #212121;
+	--gray03: #222222;
+	--gray04: #232323;
+	--gray05: #242424;
+	--gray10: #2a2a2a;
+	--gray15: #313131;
+	--gray20: #363636;
+	--gray30: #474747;
+	--gray40: #5a5a5a;
+	--gray50: #717171;
+	--gray60: #888888;
+	--gray70: #aeaeae;
+	--gray80: #d3d3d3;
+	--gray90: #e2e2e2;
+	--gray100: #f1f1f1;
+	--black: #f1f1f1;
+	--neutral-wash: rgba(136, 136, 136, 0.08);
+
+	/* Code comments and operators, from 11-prism.css */
+	--prism-comment: #686868;
+	--prism-operator: #a0a0a0;
+}

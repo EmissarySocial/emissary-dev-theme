@@ -21,9 +21,11 @@
 	--panel-padding: calc(var(--rhythm) * 5);
 }
 
-/* The document panel: the width wrapper inside the content column */
+/* The document panel: the width wrapper inside the content column.  It isolates, so the
+   watermark below can sit behind its content without dropping behind its background */
 .content-main > [class^="layout-"] {
 	position: relative;
+	isolation: isolate;
 	background-color: var(--bg2);
 	border: 1px solid var(--line);
 	border-radius: 0px 8px 8px 8px;
@@ -31,10 +33,55 @@
 }
 
 /******************************************
- * Columns, from tablet width up
+ * Watermark: the Emissary griffin behind the panel's
+ * content, in the text color at a few percent, so it
+ * reads as texture and never competes with the words
  ******************************************/
 
-@media screen and (min-width: 768px) {
+:root {
+	--watermark-strength: 0.021;
+}
+
+/* The pseudo-element covers the panel exactly, so the panel's own edges crop the griffin.
+   The panel cannot use overflow:hidden, because the sibling tabs hang above its top edge */
+.content-main > [class^="layout-"]::before {
+	content: "";
+	position: absolute;
+	inset: 0px;
+	z-index: -1;
+	pointer-events: none;
+	border-radius: inherit;
+	background-color: var(--text);
+	opacity: var(--watermark-strength);
+	-webkit-mask: url("/.themes/emissary-dev/resources/griffin.svg") no-repeat;
+	mask: url("/.themes/emissary-dev/resources/griffin.svg") no-repeat;
+	-webkit-mask-size: min(95%, 820px) auto;
+	mask-size: min(95%, 820px) auto;
+	-webkit-mask-position: right calc(var(--rhythm) * -12) bottom calc(var(--rhythm) * -10);
+	mask-position: right calc(var(--rhythm) * -12) bottom calc(var(--rhythm) * -10);
+}
+
+/******************************************
+ * Columns, at the mockup's breakpoints: the
+ * Explorer rail from 860px, and the outline
+ * column from 1180px.  Narrower than that, the
+ * article comes first and the rails follow it
+ ******************************************/
+
+/* The outline hides wherever it cannot sit beside the text: an "on this page" list at the end
+   of the page helps nobody.  A RIGHT slot holding only the outline hides with it */
+@media screen and (max-width: 1179px) {
+
+	.widgets.RIGHT #scrollspy {
+		display: none;
+	}
+
+	.page > article.content > .widgets.RIGHT:not(:has(> :not(style, script, #scrollspy))) {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 860px) {
 
 	/* A short page still reaches the bottom of the window: <main> already fills it, so the
 	   page, the article, the content column, and the panel each stretch to their parent */
@@ -71,6 +118,14 @@
 		border-right: 1px solid var(--line);
 	}
 
+	.page > article.content > .widgets.LEFT > * {
+		position: sticky;
+		top: calc(var(--titlebar-height) + var(--rhythm) * 2);
+	}
+}
+
+@media screen and (min-width: 1180px) {
+
 	/* Outside the document panel, on the page background */
 	.page > article.content > .widgets.RIGHT {
 		width: 220px;
@@ -81,38 +136,84 @@
 		border-left: none;
 	}
 
-	.page > article.content > .widgets.LEFT > *,
 	.page > article.content > .widgets.RIGHT > * {
 		position: sticky;
-		top: calc(var(--rhythm) * 2);
+		top: calc(var(--titlebar-height) + var(--rhythm) * 2);
+	}
+}
+
+/* Between the two: any RIGHT widgets other than the outline wrap onto a row under the text */
+@media screen and (min-width: 860px) and (max-width: 1179px) {
+
+	.page > article.content {
+		flex-wrap: wrap;
+	}
+
+	.page > article.content > .widgets.RIGHT {
+		order: 3;
+		width: 100%;
+		min-width: 0px;
+		max-width: none;
+		margin: 0px;
+		padding: 0px calc(var(--rhythm) * 3.5) calc(var(--rhythm) * 8);
+		border-left: none;
+	}
+
+	/* Under the panel, not under the Explorer, when there is one */
+	.page > article.content:has(> .widgets.LEFT) > .widgets.RIGHT {
+		width: calc(100% - 260px);
+		margin-left: 260px;
 	}
 }
 
 /******************************************
- * Below tablet width: one column
+ * Below 860px: one column, the article first
  ******************************************/
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 859px) {
 
+	/* The mockup's narrow panel keeps its frame inside a small gutter */
 	:root {
-		--panel-padding: calc(var(--rhythm) * 2);
+		--panel-padding: calc(var(--rhythm) * 3);
 	}
 
-	.page > article.content > .widgets.LEFT {
-		padding: calc(var(--rhythm) * 2);
-		background-color: var(--bg1);
-		border-bottom: 1px solid var(--line);
+	.page > article.content {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.page > article.content > .content-main {
+		order: 1;
+		min-width: 0px;
+		padding: calc(var(--rhythm) * 2) calc(var(--rhythm) * 2) calc(var(--rhythm) * 4);
 	}
 
 	.content-main > [class^="layout-"] {
-		padding: var(--panel-padding);
-		border-radius: 0px;
-		border-left: none;
+		padding: calc(var(--rhythm) * 3.5) var(--panel-padding) calc(var(--rhythm) * 5);
+	}
+
+	/* The Explorer follows the article, so a reader reaches the text without scrolling the tree.
+	   These undo the side column viewer.css draws from 768px */
+	.page > article.content > .widgets.LEFT {
+		order: 2;
+		width: auto;
+		min-width: 0px;
+		max-width: none;
+		margin: 0px;
+		padding: calc(var(--rhythm) * 3) calc(var(--rhythm) * 2);
+		background-color: var(--bg1);
+		border-top: 1px solid var(--line);
 		border-right: none;
 	}
 
 	.page > article.content > .widgets.RIGHT {
+		order: 3;
+		width: auto;
+		min-width: 0px;
+		max-width: none;
+		margin: 0px;
 		padding: calc(var(--rhythm) * 2);
+		border-left: none;
 	}
 }
 
@@ -346,6 +447,21 @@
 .widget-prev-next .prev-next-summary {
 	color: var(--muted);
 	opacity: 1;
+}
+
+/* On a phone the two buttons stack, so neither title is squeezed into half the width */
+@media screen and (max-width: 639px) {
+
+	.widget-prev-next {
+		flex-direction: column;
+	}
+
+	/* Both span the width; theme-global's margin-left:auto would shrink Next to its text */
+	.widget-prev-next .prev-next-link,
+	.widget-prev-next .prev-next-link.next {
+		max-width: none;
+		margin-left: 0px;
+	}
 }
 
 /******************************************

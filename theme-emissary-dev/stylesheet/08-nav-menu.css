@@ -24,6 +24,11 @@
 		display: block;
 	}
 
+	/* Content starts below the fixed control, which would otherwise sit on the first line of text */
+	body:has(> .nav-menu) > main {
+		padding-top: calc(44px + var(--rhythm) * 2.5);
+	}
+
 	/* RULE: position:fixed, never absolute, because this is also the close button over a fixed
 	   sheet.  z-index sits above the sheet and below the 1000 tier of modals */
 	.nav-menu-button {

@@ -7,13 +7,15 @@
  * browser: on first load, and again on htmx:load for every swapped page.  A
  * block already inside a .codeblock is skipped, so running twice is harmless.
  *
- * The Copy button copies the block's text, through one listener on the
- * document, so it works on every swapped page without re-binding.  When the
- * browser refuses the clipboard, the code is selected for the reader to copy.
+ * Copying is theme-global's Clipboard behavior: this only writes the markup it
+ * expects, then asks hyperscript to install it.
  *
  * Text from the page goes in through textContent only, never as markup.
  */
 (function () {
+
+	// TRUE once hyperscript has loaded theme-global's behaviors, including Clipboard
+	var hyperscriptReady = false
 
 	// addCodeBars wraps every article code block under root that has no bar yet
 	function addCodeBars(root) {
@@ -31,10 +33,14 @@
 			// Wrap the block, so the frame can hold the bar and the code together
 			var wrapper = document.createElement("div")
 			wrapper.className = "codeblock"
+			wrapper.setAttribute("script", "install Clipboard")
 			pre.parentElement.insertBefore(wrapper, pre)
 			wrapper.appendChild(pre)
 
-			// Build the bar: the language, then the Copy mockup
+			// The Clipboard behavior copies the first .clipboard-text inside it
+			pre.classList.add("clipboard-text")
+
+			// Build the bar: the language, the Copy button, and its hidden feedback
 			var bar = document.createElement("div")
 			bar.className = "codeblock-bar"
 
@@ -45,13 +51,21 @@
 
 			var copy = document.createElement("button")
 			copy.type = "button"
-			copy.className = "codeblock-copy"
+			copy.className = "codeblock-copy clipboard-copy-button"
 			copy.textContent = "Copy"
 			copy.setAttribute("aria-label", "Copy code")
 			bar.appendChild(copy)
 
+			var feedback = document.createElement("span")
+			feedback.className = "codeblock-copied clipboard-copy-feedback"
+			feedback.textContent = "Copied"
+			feedback.style.display = "none"
+			bar.appendChild(feedback)
+
 			wrapper.insertBefore(bar, pre)
 		}
+
+		installClipboards(root)
 	}
 
 	// codeLanguage returns the language named by a block's language-… class, or "text"
@@ -69,55 +83,22 @@
 		return "text"
 	}
 
-	// copyCode copies the code under a Copy button, then says so on the button for a moment
-	function copyCode(button) {
+	// installClipboards runs hyperscript over the code blocks under root
+	function installClipboards(root) {
 
-		var pre = button.closest(".codeblock").querySelector("pre")
-		var text = pre.textContent
-
-		// Without clipboard access, select the code so the reader can copy it themselves
-		if (!navigator.clipboard) {
-			selectCode(pre)
-			showCopied(button, "Selected")
+		// RULE: before hyperscript:ready, Clipboard is not defined yet, and hyperscript:ready installs it
+		if (!hyperscriptReady) {
 			return
 		}
 
-		navigator.clipboard.writeText(text).then(function () {
-			showCopied(button, "Copied")
-		}, function () {
-			selectCode(pre)
-			showCopied(button, "Selected")
-		})
-	}
-
-	// selectCode selects every character in a code block
-	function selectCode(pre) {
-		var range = document.createRange()
-		range.selectNodeContents(pre)
-		var selection = window.getSelection()
-		selection.removeAllRanges()
-		selection.addRange(range)
-	}
-
-	// showCopied puts a short status on the button, then restores its label
-	function showCopied(button, status) {
-		button.textContent = status
-		button.classList.add("copied")
-		setTimeout(function () {
-			button.textContent = "Copy"
-			button.classList.remove("copied")
-		}, 1500)
-	}
-
-	// One listener serves every Copy button, including those on pages htmx swaps in
-	document.addEventListener("click", function (event) {
-		var button = event.target.closest(".codeblock-copy")
-		if (button) {
-			copyCode(button)
+		// Hyperscript skips an element it has already initialized, so this is safe to repeat
+		var wrappers = root.querySelectorAll(".codeblock")
+		for (var index = 0; index < wrappers.length; index++) {
+			window._hyperscript.process(wrappers[index])
 		}
-	})
+	}
 
-	// Bars for the first page, and for every page htmx swaps in
+	// Bars for the first page
 	if (document.readyState === "loading") {
 		document.addEventListener("DOMContentLoaded", function () {
 			addCodeBars(document)
@@ -126,6 +107,13 @@
 		addCodeBars(document)
 	}
 
+	// Hyperscript processes the page before these wrappers may exist, so install them once it is ready
+	document.addEventListener("hyperscript:ready", function () {
+		hyperscriptReady = true
+		installClipboards(document)
+	})
+
+	// Bars for every page htmx swaps in.  Hyperscript's own htmx:load handler runs before this one
 	document.addEventListener("htmx:load", function (event) {
 		addCodeBars(event.detail.elt)
 	})

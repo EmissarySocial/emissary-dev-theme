@@ -1,0 +1,47 @@
+/******************************************
+ * Half Warm Palette
+ *
+ * Each warm gray at its own lightness and hue, with half its chroma (OKLab). The active palette, as of 2026-10-14.
+ * Every neutral token in 00-tokens.css and
+ * 11-prism.css.  To use it, copy this file to
+ * stylesheet/99-palette.css (see README.md).
+ ******************************************/
+
+:root {
+	--bg0: #100f0f;
+	--bg1: #201e1d;
+	--bg2: #252322;
+	--bg3: #2b2927;
+	--bg4: #33302d;
+	--line: #383532;
+	--text: #d5d2cd;
+	--muted: #8c8882;
+	--faint: #5c5954;
+	--neutral: #8c8882;
+	--neutral-hi: #e5e2dc;
+	--neutral-dim: #5c5954;
+	--white: #201e1d;
+	--gray00: #201e1d;
+	--gray01: #211f1e;
+	--gray02: #22201f;
+	--gray03: #232120;
+	--gray04: #242221;
+	--gray05: #252322;
+	--gray10: #2b2927;
+	--gray15: #33302d;
+	--gray20: #383532;
+	--gray30: #494643;
+	--gray40: #5c5954;
+	--gray50: #74706b;
+	--gray60: #8c8882;
+	--gray70: #b1ada8;
+	--gray80: #d5d2cd;
+	--gray90: #e5e2dc;
+	--gray100: #f4f1ed;
+	--black: #f4f1ed;
+	--neutral-wash: rgba(140, 136, 130, 0.08);
+
+	/* Code comments and operators, from 11-prism.css */
+	--prism-comment: #6b6760;
+	--prism-operator: #a4a099;
+}

@@ -9,19 +9,20 @@
 :root {
 	color-scheme: dark;
 
-	/* Surfaces, darkest to lightest */
+	/* Neutrals: the mockup's warm grays at half their chroma, so the half-warm palette in
+	   palettes/.  Surfaces first, darkest to lightest */
 	/* Halfway between black and --bg1, not the mockup's pure black: Ben found black too stark */
-	--bg0: #100f0e;
-	--bg1: #211e1b;
-	--bg2: #262320;
-	--bg3: #2d2925;
-	--bg4: #353029;
+	--bg0: #100f0f;
+	--bg1: #201e1d;
+	--bg2: #252322;
+	--bg3: #2b2927;
+	--bg4: #33302d;
 
-	--line: #3a352f;
+	--line: #383532;
 
-	--text: #d8d2c8;
-	--muted: #8f877b;
-	--faint: #5f594f;
+	--text: #d5d2cd;
+	--muted: #8c8882;
+	--faint: #5c5954;
 
 	--magenta: #e64ba0;
 	--magenta-hi: #ff6db8;
@@ -40,10 +41,10 @@
 	--gold-dim: #8a6b37;
 	--gold-wash: rgba(230, 179, 92, 0.08);
 
-	--neutral: #8f877b;
-	--neutral-hi: #e8e2d6;
-	--neutral-dim: #5f594f;
-	--neutral-wash: rgba(143, 135, 123, 0.08);
+	--neutral: #8c8882;
+	--neutral-hi: #e5e2dc;
+	--neutral-dim: #5c5954;
+	--neutral-wash: rgba(140, 136, 130, 0.08);
 
 	/* Four more card accents, built the same way: violet from the mockup's number color,
 	   then blue, green, and coral, chosen to sit apart from teal, gold, and magenta */
@@ -97,27 +98,27 @@
 
 	--mono: "Hack", "Source Code Pro", ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
 
-	/* theme-global's gray ramp, rebuilt on the mockup's warm hue.
+	/* theme-global's gray ramp, rebuilt on the mockup's grays at half their warmth (palettes/README.md).
 	   --white and --black are roles: the page color and the strongest text */
-	--white: #211e1b;
-	--gray00: #211e1b;
-	--gray01: #221f1c;
-	--gray02: #23201d;
-	--gray03: #24211e;
-	--gray04: #25221f;
-	--gray05: #262320;
-	--gray10: #2d2925;
-	--gray15: #353029;
-	--gray20: #3a352f;
-	--gray30: #4c463e;
-	--gray40: #5f594f;
-	--gray50: #777065;
-	--gray60: #8f877b;
-	--gray70: #b4ada2;
-	--gray80: #d8d2c8;
-	--gray90: #e8e2d6;
-	--gray100: #f6f1e8;
-	--black: #f6f1e8;
+	--white: #201e1d;
+	--gray00: #201e1d;
+	--gray01: #211f1e;
+	--gray02: #22201f;
+	--gray03: #232120;
+	--gray04: #242221;
+	--gray05: #252322;
+	--gray10: #2b2927;
+	--gray15: #33302d;
+	--gray20: #383532;
+	--gray30: #494643;
+	--gray40: #5c5954;
+	--gray50: #74706b;
+	--gray60: #8c8882;
+	--gray70: #b1ada8;
+	--gray80: #d5d2cd;
+	--gray90: #e5e2dc;
+	--gray100: #f4f1ed;
+	--black: #f4f1ed;
 
 	/* theme-global's dark color ramps, restated so they apply in every color scheme */
 	--blue100: #d0e2ff;

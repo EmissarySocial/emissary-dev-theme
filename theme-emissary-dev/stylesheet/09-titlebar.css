@@ -2,10 +2,11 @@
  * Title Bar
  *
  * The desktop <nav> as the mockup's title bar: a 44px
- * sticky strip with the brand, the page links, the
- * search mockup, and the account links.  Below 640px
- * the bar is hidden by 08-nav-menu.css, so nothing
- * here sets nav's display.
+ * sticky strip with the brand, the page links, and
+ * the account links.  Below 640px the bar is hidden
+ * by 08-nav-menu.css, so nothing here sets nav's
+ * display.  The sticky rails in 06-article.css start
+ * below the bar's height.
  ******************************************/
 
 /* The bar's height, which the sticky rails and in-page anchors clear */
@@ -100,59 +101,4 @@ nav.titlebar a.titlebar-brand:focus {
 .titlebar-brand-name {
 	font-weight: 700;
 	letter-spacing: 0.02em;
-}
-
-/******************************************
- * Search: a styled mockup with no behavior (D2)
- ******************************************/
-
-.titlebar-search {
-	display: flex;
-	align-items: center;
-	gap: var(--rhythm);
-	flex-shrink: 1;
-	width: min(320px, 30vw);
-	min-width: 0px;
-	margin-left: auto;
-	margin-right: calc(var(--rhythm) * 1.5);
-	padding: calc(var(--rhythm) * 0.75) calc(var(--rhythm) * 1.5);
-	line-height: calc(var(--rhythm) * 2);
-	color: var(--muted);
-	background-color: var(--bg3);
-	border: 1px solid var(--line);
-	border-radius: 4px;
-	cursor: text;
-	white-space: nowrap;
-
-	&:hover {
-		border-color: var(--faint);
-	}
-
-	& > .titlebar-search-text {
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-	& > kbd {
-		margin-left: auto;
-		padding: 1px 6px;
-		font-family: inherit;
-		font-size: 11px;
-		color: var(--muted);
-		background-color: var(--bg1);
-		border: 1px solid var(--line);
-		border-radius: 3px;
-	}
-}
-
-/******************************************
- * Sticky rails start below the bar
- ******************************************/
-
-@media screen and (min-width: 768px) {
-
-	.page > article.content > .widgets.LEFT > *,
-	.page > article.content > .widgets.RIGHT > * {
-		top: calc(var(--titlebar-height) + var(--rhythm) * 2);
-	}
 }

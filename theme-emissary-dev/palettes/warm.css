@@ -1,0 +1,47 @@
+/******************************************
+ * Warm Palette
+ *
+ * The mockup's original warm grays, hue 30-40°. Used until 2026-10-14.
+ * Every neutral token in 00-tokens.css and
+ * 11-prism.css.  To use it, copy this file to
+ * stylesheet/99-palette.css (see README.md).
+ ******************************************/
+
+:root {
+	--bg0: #100f0e;
+	--bg1: #211e1b;
+	--bg2: #262320;
+	--bg3: #2d2925;
+	--bg4: #353029;
+	--line: #3a352f;
+	--text: #d8d2c8;
+	--muted: #8f877b;
+	--faint: #5f594f;
+	--neutral: #8f877b;
+	--neutral-hi: #e8e2d6;
+	--neutral-dim: #5f594f;
+	--white: #211e1b;
+	--gray00: #211e1b;
+	--gray01: #221f1c;
+	--gray02: #23201d;
+	--gray03: #24211e;
+	--gray04: #25221f;
+	--gray05: #262320;
+	--gray10: #2d2925;
+	--gray15: #353029;
+	--gray20: #3a352f;
+	--gray30: #4c463e;
+	--gray40: #5f594f;
+	--gray50: #777065;
+	--gray60: #8f877b;
+	--gray70: #b4ada2;
+	--gray80: #d8d2c8;
+	--gray90: #e8e2d6;
+	--gray100: #f6f1e8;
+	--black: #f6f1e8;
+	--neutral-wash: rgba(143, 135, 123, 0.08);
+
+	/* Code comments and operators, from 11-prism.css */
+	--prism-comment: #6e6759;
+	--prism-operator: #a89f92;
+}
