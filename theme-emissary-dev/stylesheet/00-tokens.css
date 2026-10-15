@@ -32,6 +32,18 @@
 	--teal-dim: #2e6e63;
 	--teal-wash: rgba(79, 184, 168, 0.08);
 
+	/* Gold from the mockup's amber syntax color, and a neutral from its muted text.
+	   Each follows magenta's steps: -hi brighter, -dim at about 60%, -wash at 8% */
+	--gold: #e6b35c;
+	--gold-hi: #ffc978;
+	--gold-dim: #8a6b37;
+	--gold-wash: rgba(230, 179, 92, 0.08);
+
+	--neutral: #8f877b;
+	--neutral-hi: #e8e2d6;
+	--neutral-dim: #5f594f;
+	--neutral-wash: rgba(143, 135, 123, 0.08);
+
 	--mono: "Hack", "Source Code Pro", ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
 
 	/* theme-global's gray ramp, rebuilt on the mockup's warm hue.
@@ -106,7 +118,8 @@
 	--button-primary-background: var(--magenta);
 	--button-primary-background-hover: var(--magenta-hi);
 
-	--heading-color: var(--gray90);
+	/* The mockup gives headings the body text color, not a brighter one */
+	--heading-color: var(--text);
 	--text-color: var(--text);
 	--grid-highlight-background: var(--magenta-wash);
 

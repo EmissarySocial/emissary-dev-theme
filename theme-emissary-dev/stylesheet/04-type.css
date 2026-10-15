@@ -2,8 +2,14 @@
  * Type
  *
  * Hack everywhere.  Sizes and line heights stay
- * on theme-global's rhythm scale (see AGENTS.md).
+ * on theme-global's rhythm scale, at 7px (see AGENTS.md).
  ******************************************/
+
+/* A tighter rhythm than theme-global's 8px, for the mockup's editor density.  Every
+   rhythm-based size and space scales with it: body text is 14px on a 21px line */
+:root {
+	--rhythm: 7px;
+}
 
 html {
 	font-family: var(--mono);

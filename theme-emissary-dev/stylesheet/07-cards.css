@@ -1,0 +1,65 @@
+/******************************************
+ * Cards
+ *
+ * theme-global's .card, in the shape of the mockup's
+ * callout, plus four color variants: .magenta, .teal,
+ * .gold, and .gray.  Spacing stays with utility
+ * classes such as .padding, as everywhere else.
+ ******************************************/
+
+.card {
+	background-color: var(--bg2);
+	border: 1px solid var(--line);
+	border-radius: 8px;
+	box-shadow: none;
+	color: var(--text);
+}
+
+/* Each variant sets its accent once; the rules below read it */
+.card.magenta {
+	--card-accent: var(--magenta);
+	--card-accent-hi: var(--magenta-hi);
+	--card-accent-dim: var(--magenta-dim);
+	--card-accent-wash: var(--magenta-wash);
+}
+
+.card.teal {
+	--card-accent: var(--teal);
+	--card-accent-hi: var(--teal-hi);
+	--card-accent-dim: var(--teal-dim);
+	--card-accent-wash: var(--teal-wash);
+}
+
+.card.gold {
+	--card-accent: var(--gold);
+	--card-accent-hi: var(--gold-hi);
+	--card-accent-dim: var(--gold-dim);
+	--card-accent-wash: var(--gold-wash);
+}
+
+.card.gray {
+	--card-accent: var(--neutral);
+	--card-accent-hi: var(--neutral-hi);
+	--card-accent-dim: var(--neutral-dim);
+	--card-accent-wash: var(--neutral-wash);
+}
+
+/* A tinted wash and a dim border, as the mockup's callout */
+.card:is(.magenta, .teal, .gold, .gray) {
+	background-color: var(--card-accent-wash);
+	border-color: var(--card-accent-dim);
+}
+
+/* Titles take the bright accent; the callout's title is bold text */
+.card:is(.magenta, .teal, .gold, .gray) :is(h1, h2, h3, h4, h5, h6, b, strong, .bold) {
+	color: var(--card-accent-hi);
+}
+
+/* Icons take the accent, as the callout's glyph does */
+.card:is(.magenta, .teal, .gold, .gray) .bi {
+	color: var(--card-accent);
+}
+
+.card:is(.magenta, .teal, .gold, .gray).clickable:hover {
+	border-color: var(--card-accent);
+}

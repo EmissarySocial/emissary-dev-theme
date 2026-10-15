@@ -15,7 +15,11 @@ The site theme for [emissary.dev](https://emissary.dev): a dark, editor-style lo
   - `01-layout.css` to `03-app.css` are `theme-default`'s layout rules, unchanged so far.
   - `04-type.css` sets Hack as the font, and the link, selection, and focus colors. Sizes stay on `theme-global`'s rhythm scale.
   - `05-dark-only.css` restates the few `theme-global` rules that otherwise apply only in OS dark mode.
+  - `06-article.css` lays the article view out as an editor: LEFT widgets as the Explorer rail, the content column's `layout-*` wrapper as the document panel, RIGHT widgets outside it on the page background, `widget-navigation-list` as a file tree, the sibling tabs on the panel's top edge, `widget-scrollspy` as the outline rail, `widget-breadrumbs` as the breadcrumb, and `widget-prev-next` as the mockup's pager.
+  - `07-cards.css` gives `.card` the shape of the mockup's callout, and adds `.magenta`, `.teal`, `.gold`, and `.gray` variants: a tinted wash, a dim border, and bright titles and icons. Cards keep taking their spacing from utility classes such as `.padding`.
+
+The sibling tabs are their own widget, [widget-sibling-tabs](../widget-sibling-tabs/README.md), in this repository. Place it in an article's TOP slot.
 
 ## Status
 
-The palette and type are in place. The chrome, the article styles, and the widgets come next, per the `EMISSARY-DEV-WEBSITE` project plan in `emissary-specs`. See [AGENTS.md](AGENTS.md) before changing a color.
+The palette, type, article layout, file tree, and sibling tabs are in place. The title bar, the article's Markdown styles, and the outline come next, per the `EMISSARY-DEV-WEBSITE` project plan in `emissary-specs`. See [AGENTS.md](AGENTS.md) before changing a color.
