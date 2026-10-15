@@ -29,56 +29,64 @@
 	--magenta-dim: #8a3463;
 	--magenta-wash: rgba(230, 75, 160, 0.08);
 
-	--teal: #4fb8a8;
-	--teal-hi: #74d6c5;
-	--teal-dim: #2e6e63;
-	--teal-wash: rgba(79, 184, 168, 0.08);
+	/* Cards only: magenta at the card accents' lightness (OKLCH L 0.74).  The theme's own
+	   magenta above stays darker, because it is the brand color */
+	--magenta-card: #ff71ba;
+	--magenta-card-hi: #ffa5ce;
+	--magenta-card-dim: #a74e7c;
+	--magenta-card-wash: rgba(255, 113, 186, 0.08);
+
+	--teal: #57bfaf;
+	--teal-hi: #7cdecd;
+	--teal-dim: #35756a;
+	--teal-wash: rgba(87, 191, 175, 0.08);
 
 	/* Gold from the mockup's amber syntax color, and a neutral from its muted text.
-	   Each follows magenta's steps: -hi brighter, -dim at about 60%, -wash at 8% */
+	   Each follows magenta's steps: -hi brighter, -dim at about 60%, -wash at 8%.
+	   Every card accent below gold sits at OKLCH lightness 0.74, so none reads dim */
 	--gold: #e6b35c;
 	--gold-hi: #ffc978;
 	--gold-dim: #8a6b37;
 	--gold-wash: rgba(230, 179, 92, 0.08);
 
-	--neutral: #8c8882;
+	--neutral: #aeaaa4;
 	--neutral-hi: #e5e2dc;
-	--neutral-dim: #5c5954;
-	--neutral-wash: rgba(140, 136, 130, 0.08);
+	--neutral-dim: #7c7974;
+	--neutral-wash: rgba(174, 170, 164, 0.08);
 
 	/* Four more card accents, built the same way: violet from the mockup's number color,
 	   then blue, green, and coral, chosen to sit apart from teal, gold, and magenta */
-	--violet: #b88fd6;
-	--violet-hi: #d4b0f0;
-	--violet-dim: #6e5680;
-	--violet-wash: rgba(184, 143, 214, 0.08);
+	--violet: #c097df;
+	--violet-hi: #dcb8f9;
+	--violet-dim: #765d88;
+	--violet-wash: rgba(192, 151, 223, 0.08);
 
-	--blue: #5b9ee6;
-	--blue-hi: #82bcff;
-	--blue-dim: #375f8a;
-	--blue-wash: rgba(91, 158, 230, 0.08);
+	--blue: #6caff8;
+	--blue-hi: #a2cdff;
+	--blue-dim: #466f9b;
+	--blue-wash: rgba(108, 175, 248, 0.08);
 
 	--green: #7cbf6a;
 	--green-hi: #9edc8b;
 	--green-dim: #4a7340;
 	--green-wash: rgba(124, 191, 106, 0.08);
 
-	--coral: #e6705c;
-	--coral-hi: #ff9180;
-	--coral-dim: #8a4337;
-	--coral-wash: rgba(230, 112, 92, 0.08);
+	--coral: #fb836e;
+	--coral-hi: #ffb1a3;
+	--coral-dim: #9d5447;
+	--coral-wash: rgba(251, 131, 110, 0.08);
 
 	/* Orange sits between coral and gold: hue 26°, against coral's 9° and gold's 38° */
-	--orange: #e78f4b;
-	--orange-hi: #ffae70;
-	--orange-dim: #8b562d;
-	--orange-wash: rgba(231, 143, 75, 0.08);
+	--orange: #eb924f;
+	--orange-hi: #ffb37b;
+	--orange-dim: #8e5930;
+	--orange-wash: rgba(235, 146, 79, 0.08);
 
 	/* Indigo and lime fill the two widest gaps on the cool side: blue to violet, and gold to green */
-	--indigo: #7d78e3;
-	--indigo-hi: #a29dff;
-	--indigo-dim: #4b4888;
-	--indigo-wash: rgba(125, 120, 227, 0.08);
+	--indigo: #9f9eff;
+	--indigo-hi: #c9c9ff;
+	--indigo-dim: #6a68ac;
+	--indigo-wash: rgba(159, 158, 255, 0.08);
 
 	--lime: #b4c95e;
 	--lime-hi: #d4e87e;
@@ -86,15 +94,15 @@
 	--lime-wash: rgba(180, 201, 94, 0.08);
 
 	/* Jade between green and teal, and rose between magenta and coral, complete the wheel */
-	--jade: #60be7f;
-	--jade-hi: #84dca0;
-	--jade-dim: #3a724c;
-	--jade-wash: rgba(96, 190, 127, 0.08);
+	--jade: #64c283;
+	--jade-hi: #88e0a4;
+	--jade-dim: #3e7650;
+	--jade-wash: rgba(100, 194, 131, 0.08);
 
-	--rose: #e5617c;
-	--rose-hi: #ff8aa3;
-	--rose-dim: #893a4a;
-	--rose-wash: rgba(229, 97, 124, 0.08);
+	--rose: #ff7a93;
+	--rose-hi: #ffb4c1;
+	--rose-dim: #a1505f;
+	--rose-wash: rgba(255, 122, 147, 0.08);
 
 	--mono: "Hack", "Source Code Pro", ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
 

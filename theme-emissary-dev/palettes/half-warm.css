@@ -17,9 +17,9 @@
 	--text: #d5d2cd;
 	--muted: #8c8882;
 	--faint: #5c5954;
-	--neutral: #8c8882;
+	--neutral: #aeaaa4;
 	--neutral-hi: #e5e2dc;
-	--neutral-dim: #5c5954;
+	--neutral-dim: #7c7974;
 	--white: #201e1d;
 	--gray00: #201e1d;
 	--gray01: #211f1e;
@@ -39,7 +39,7 @@
 	--gray90: #e5e2dc;
 	--gray100: #f4f1ed;
 	--black: #f4f1ed;
-	--neutral-wash: rgba(140, 136, 130, 0.08);
+	--neutral-wash: rgba(174, 170, 164, 0.08);
 
 	/* Code comments and operators, from 11-prism.css */
 	--prism-comment: #6b6760;

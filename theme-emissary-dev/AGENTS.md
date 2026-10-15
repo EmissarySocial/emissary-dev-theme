@@ -44,6 +44,10 @@ Two differences from minimal. The signed-in links (Profile, Inbox, and the rest)
 
 The `#`, `##`, and `###` marks in [stylesheet/06-article.css](stylesheet/06-article.css) are for the article's own headings. [stylesheet/07-cards.css](stylesheet/07-cards.css) turns them off inside any `.card` with a selector at the same specificity as the mark rules, which wins only because `07` loads after `06`. Keep that order, or raise the specificity, when renaming either file.
 
+## Card accents sit at OKLCH lightness 0.74 or above
+
+Every card accent in [stylesheet/00-tokens.css](stylesheet/00-tokens.css) has an OKLCH lightness of at least 0.74, which keeps each one at 6:1 or better against the panel and stops any one color reading dim beside the others. A new accent starts at L 0.74 at its own hue, lowering chroma only as far as sRGB requires, and its `-hi` and `-dim` steps keep the same offsets as the others. Cards read `--magenta-card*`, not `--magenta*`: the brand magenta stays darker everywhere else, so change the two separately. `--neutral` also lives in the three [palettes/](palettes/README.md) files, at matched lightness.
+
 ## The code bar is built in the browser, and only once per block
 
 The Markdown output is a bare `<pre><code class="language-…">`, so [javascript/code-bar.js](javascript/code-bar.js) adds the `.codeblock` wrapper and its bar on first load and on every `htmx:load`. It skips a block already inside a `.codeblock`, because `htmx:load` can fire more than once over the same content. It writes page text only through `textContent`. Without scripting the bare `<pre>` keeps the full frame from `10-markdown.css`, so nothing looks broken. Like every file in a javascript bundle, it ends with a semicolon (see `theme-global/AGENTS.md`).

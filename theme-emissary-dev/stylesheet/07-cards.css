@@ -19,10 +19,10 @@
 
 /* Each variant sets its accent once; the rules below read it */
 .card.magenta {
-	--card-accent: var(--magenta);
-	--card-accent-hi: var(--magenta-hi);
-	--card-accent-dim: var(--magenta-dim);
-	--card-accent-wash: var(--magenta-wash);
+	--card-accent: var(--magenta-card);
+	--card-accent-hi: var(--magenta-card-hi);
+	--card-accent-dim: var(--magenta-card-dim);
+	--card-accent-wash: var(--magenta-card-wash);
 }
 
 .card.teal {
