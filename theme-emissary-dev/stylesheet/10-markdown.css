@@ -44,7 +44,7 @@ samp {
 }
 
 .e-content li::marker {
-	color: var(--faint);
+	color: var(--muted);
 }
 
 .e-content strong,
@@ -157,9 +157,9 @@ samp {
 }
 
 .e-content .codeblock-copy:hover {
-	color: var(--text);
+	color: var(--teal);
 	background-color: transparent;
-	border-color: var(--faint);
+	border-color: var(--teal-dim);
 }
 
 /* Stands in for the button for a moment after a click (theme-global's Clipboard behavior) */
@@ -196,40 +196,63 @@ samp {
 
 /******************************************
  * Tables: the mockup's .params table
+ *
+ * RULE: every selector starts with .content-main.
+ * stream-article-base's tables.css loads after this
+ * file, with an outer border, a gray header row, and
+ * zebra stripes; the extra class outranks it.
  ******************************************/
 
-.e-content table {
+.content-main .e-content table {
 	width: 100%;
 	margin: calc(var(--rhythm) * 2) 0px calc(var(--rhythm) * 3.5);
 	font-size: calc(var(--rhythm) * 1.75);
+	border: none;
 	border-collapse: collapse;
 }
 
-.e-content th {
+.content-main .e-content thead {
+	background-color: transparent;
+	border: none;
+}
+
+.content-main .e-content th {
 	padding: var(--rhythm) calc(var(--rhythm) * 2);
 	text-align: left;
 	font-size: 11px;
 	font-weight: var(--weight);
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
-	color: var(--faint);
+	color: var(--muted);
 	border-bottom: 1px solid var(--line);
 }
 
-.e-content td {
+.content-main .e-content td {
 	padding: calc(var(--rhythm) * 1.25) calc(var(--rhythm) * 2);
+	text-align: left;
 	vertical-align: top;
 	border-bottom: 1px solid var(--line);
 }
 
-.e-content tr:last-child td {
+/* No zebra stripes: rows are separated by their rules alone.  :nth-child(n) matches every row,
+   and lifts this past the template's own tbody tr:nth-child(even) */
+.content-main .e-content tbody tr:nth-child(n) {
+	background-color: transparent;
+}
+
+/* Hovered rows take a teal wash, like every other hover (D23) */
+.content-main .e-content tbody tr:hover {
+	background-color: var(--teal-wash);
+}
+
+.content-main .e-content tr:last-child td {
 	border-bottom: none;
 }
 
 /* Narrow screens: a wide table scrolls sideways inside the panel instead of overflowing it */
 @media screen and (max-width: 859px) {
 
-	.e-content table {
+	.content-main .e-content table {
 		display: block;
 		overflow-x: auto;
 		overflow-wrap: normal;

@@ -21,7 +21,9 @@
 	--line: #383532;
 
 	--text: #d5d2cd;
-	--muted: #8c8882;
+	/* RULE: --muted is the dimmest text color.  It is 4.5:1 on --bg3, the lightest surface text sits on;
+	   --faint is 2.2:1, so it is for borders, rules, and dots only, never for text */
+	--muted: #938f89;
 	--faint: #5c5954;
 
 	--magenta: #e64ba0;
@@ -171,17 +173,24 @@
 	--input-background: var(--bg3);
 	--input-color: var(--text);
 
+	/* Every hover is teal (D23); selected states and focus rings stay magenta */
 	--link-color: var(--magenta);
-	--link-color-hover: var(--magenta-hi);
+	--link-color-hover: var(--teal);
 	--focus-color: var(--magenta);
 
+	/* Dark labels: white is 3.6:1 on magenta and 2.3:1 on teal, and --bg0 passes on both */
+	--button-primary-color: var(--bg0);
+	--button-primary-color-hover: var(--bg0);
 	--button-primary-background: var(--magenta);
-	--button-primary-background-hover: var(--magenta-hi);
+	--button-primary-background-hover: var(--teal);
 
 	/* The mockup gives headings the body text color, not a brighter one */
 	--heading-color: var(--text);
 	--text-color: var(--text);
 	--grid-highlight-background: var(--magenta-wash);
+
+	/* theme-global's flash highlight, as a gold wash: heading text stays 5.6:1 at its peak */
+	--flash-highlight-color: rgba(230, 179, 92, 0.28);
 
 	/* theme-global sets this heavier in dark mode only */
 	--weight: 400;

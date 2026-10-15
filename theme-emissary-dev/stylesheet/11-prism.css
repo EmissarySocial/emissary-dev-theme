@@ -11,7 +11,7 @@
 :root {
 	--prism-text: var(--text);
 
-	--prism-keyword: #e64ba0;
+	--prism-keyword: #f055a9;
 	--prism-function: #e6b35c;
 	--prism-string: #c9a978;
 	--prism-number: #b88fd6;
@@ -19,11 +19,12 @@
 	--prism-property: #d9a0bd;
 	--prism-builtin: #8fc4b0;
 	--prism-operator: #a4a099;
-	--prism-comment: #6b6760;
+	/* Comments at 4.5:1 on the code background, the WCAG floor: still the dimmest token */
+	--prism-comment: #938f88;
 	--prism-regex: #ff6db8;
 
 	--prism-inserted: #95b873;
-	--prism-deleted: #d96a5f;
+	--prism-deleted: #df6f64;
 
 	--prism-selection: rgba(138, 52, 99, 0.55);
 }

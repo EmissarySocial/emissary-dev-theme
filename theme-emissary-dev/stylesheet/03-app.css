@@ -37,7 +37,7 @@
 
 #app-sidebar .menu-item:hover {
 	background-color: var(--gray15);
-	color: var(--gray90);
+	color: var(--teal);
 }
 
 #app-sidebar .menu-item.link {
@@ -104,4 +104,11 @@ button > .pill,
 
 i.bi {
 	min-width: calc(1.5 * var(--rhythm)) px;
+}
+
+/* theme-global's clickable table rows take a teal wash on hover, like every hover (D23) */
+table.table tr[role=link]:hover td,
+table.table tr[role=button]:hover td,
+table.table tr.clickable:hover td {
+	background-color: var(--teal-wash);
 }

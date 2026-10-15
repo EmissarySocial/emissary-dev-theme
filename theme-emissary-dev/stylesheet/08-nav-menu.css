@@ -141,7 +141,7 @@
 
 		&:hover,
 		&:focus {
-			color: var(--text);
+			color: var(--teal);
 			background-color: var(--bg4);
 		}
 

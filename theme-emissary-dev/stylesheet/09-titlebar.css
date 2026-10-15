@@ -51,7 +51,7 @@ nav.titlebar a {
 
 	&:hover,
 	&:focus {
-		color: var(--text);
+		color: var(--teal);
 		background-color: var(--bg4);
 		text-decoration: none;
 	}
@@ -64,12 +64,13 @@ nav.titlebar a {
 	}
 
 	&.primary {
-		color: #ffffff;
-		background-color: var(--magenta);
+		color: var(--button-primary-color);
+		background-color: var(--button-primary-background);
 
 		&:hover,
 		&:focus {
-			background-color: var(--magenta-hi);
+			color: var(--button-primary-color-hover);
+			background-color: var(--button-primary-background-hover);
 		}
 	}
 

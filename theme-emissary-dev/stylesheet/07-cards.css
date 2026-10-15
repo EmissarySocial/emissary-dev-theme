@@ -17,6 +17,12 @@
 	color: var(--text);
 }
 
+/* A plain clickable card's hover border is teal, like every hover (D23).  Colored cards
+   override it below with their own accent */
+.card.clickable:hover {
+	border-color: var(--teal);
+}
+
 /* Each variant sets its accent once; the rules below read it */
 .card.magenta {
 	--card-accent: var(--magenta-card);

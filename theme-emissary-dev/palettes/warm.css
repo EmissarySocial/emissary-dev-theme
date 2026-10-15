@@ -15,7 +15,7 @@
 	--bg4: #353029;
 	--line: #3a352f;
 	--text: #d8d2c8;
-	--muted: #8f877b;
+	--muted: #978e82;
 	--faint: #5f594f;
 	--neutral: #b2aa9d;
 	--neutral-hi: #e8e2d6;
@@ -42,6 +42,6 @@
 	--neutral-wash: rgba(178, 170, 157, 0.08);
 
 	/* Code comments and operators, from 11-prism.css */
-	--prism-comment: #6e6759;
+	--prism-comment: #968f80;
 	--prism-operator: #a89f92;
 }

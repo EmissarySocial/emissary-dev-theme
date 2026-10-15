@@ -40,6 +40,13 @@ a:hover {
 	color: var(--link-color-hover);
 }
 
+/* theme-global's plain buttons keep their gray hover background, with a teal label (D23).
+   Primary and colored buttons are more specific, so they keep their own */
+button:hover,
+.button:hover {
+	color: var(--teal);
+}
+
 :focus-visible {
 	outline: 1px solid var(--focus-color);
 	outline-offset: 2px;

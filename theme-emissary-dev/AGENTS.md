@@ -62,3 +62,11 @@ Copying is `theme-global`'s Clipboard behavior (`hyperscript/clipboard._hs`), no
 
 `06-article.css` uses the mockup's breakpoints, not `theme-default`'s 768px. At 768px a 260px Explorer and a 220px outline left the article column about 300px wide. Below 1180px the outline (`#scrollspy`) hides, and so does a RIGHT slot holding nothing else, matched with `:has(> :not(style, script, #scrollspy))`; an outline at the end of the page helps nobody. Other RIGHT widgets stay visible. Below 860px the article is a flex column with `.content-main` ordered first, so a reader reaches the text without scrolling past the Explorer. `viewer.css` from `stream-article-base` draws side columns from 768px and loads after this theme, so every rule here that undoes it (width, margin, border, flex direction) is written with a more specific selector rather than relying on order.
 
+
+## Template stylesheets load after this theme's, and win ties
+
+An article page links `/.templates/article-base/stylesheet` after the theme stylesheet, so a rule there beats a rule here at equal specificity. Its `tables.css` adds an outer border, a gray header row, and zebra stripes, with selectors such as `.e-content thead th` and `.e-content tbody tr:nth-child(even)`. [stylesheet/10-markdown.css](stylesheet/10-markdown.css) prefixes every table rule with `.content-main` to outrank it, and the row reset adds `:nth-child(n)` because the zebra rule's pseudo-class would otherwise tie. When a content style here seems to be ignored, check that template stylesheet before raising anything else.
+
+## Text is never dimmer than `--muted`, and every hover is teal
+
+Every text color passes WCAG AA, 4.5:1, on the surface behind it (D24 in the project plan). `--muted` is the floor: it is 4.5:1 on `--bg3`, the lightest surface that holds text. `--faint` is 2.2:1, so it is for borders, rules, and the tab dots, never for text, however small or decorative the label looks. Primary buttons use `--button-primary-color` (`--bg0`), because white fails on both magenta and teal. Every hover is teal and every selected state magenta (D23); a new hover rule follows that, and keeps the selected rule more specific so the current page stays magenta under the pointer. `--link-color` is the one known exception at 4.38:1, kept by choice.
